@@ -7,6 +7,7 @@ interface Particle {
   color: string;
   vx: number;
   vy: number;
+  bounceCount: number;
 }
 
 const ColorSplash: React.FC = () => {
@@ -35,9 +36,28 @@ const ColorSplash: React.FC = () => {
   };
 
   const updateParticle = (particle: Particle): void => {
-    particle.x += particle.vx;
-    particle.y += particle.vy;
+    const canvas = canvasRef.current;
+    if (canvas) {
+      if (particle.x + particle.radius > canvas.width || particle.x - particle.radius < 0) {
+        particle.vx = -particle.vx; // Reverse horizontal velocity on collision with sides
+        particle.bounceCount++;
+      }
+      if (particle.y + particle.radius > canvas.height || particle.y - particle.radius < 0) {
+        particle.vy = -particle.vy; // Reverse vertical velocity on collision with top or bottom
+        particle.bounceCount++;
+      }
+  
+      if (particle.bounceCount > 3) {
+        // Remove particles after bouncing three times
+        particlesRef.current = particlesRef.current.filter((p) => p !== particle);
+        return;
+      }
+  
+      particle.x += particle.vx;
+      particle.y += particle.vy;
+    }
   };
+  
 
   const createParticles = (x: number, y: number, numParticles: number = 30): Particle[] => {
     const particles: Particle[] = [];
@@ -49,6 +69,7 @@ const ColorSplash: React.FC = () => {
         color: randomColor(),
         vx: getRandomVelocity(),
         vy: getRandomVelocity(),
+        bounceCount: 0,
       });
     }
     return particles;
