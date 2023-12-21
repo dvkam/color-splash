@@ -1,4 +1,4 @@
-> Stumbled accross the  [Useless Web](https://theuselessweb.com/) some time ago and decided to contribute with my useless website! 
+> Stumbled accross the [Useless Web](https://theuselessweb.com/) some time ago and decided to contribute with my useless website! 
 
 # React + TypeScript + Vite
 

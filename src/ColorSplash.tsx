@@ -60,7 +60,7 @@ const ColorSplash: React.FC = () => {
   };
   
 
-  const createParticles = (x: number, y: number, numParticles: number = 30): Particle[] => {
+  const createParticles = (x: number, y: number, numParticles: number = 40): Particle[] => {
     const particles: Particle[] = [];
     for (let i = 0; i < numParticles; i++) {
       particles.push({
@@ -91,6 +91,10 @@ const ColorSplash: React.FC = () => {
       const ctx = canvas.getContext('2d');
       if (ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'black';
+        ctx.font = '30px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('Click Anywhere!', canvas.width / 2, canvas.height / 2); // 
 
         particlesRef.current.forEach((particle) => {
           drawParticle(ctx, particle);
@@ -133,7 +137,7 @@ const ColorSplash: React.FC = () => {
     }
   }, []);
 
-  return <canvas ref={canvasRef} style={{ width: '100vw', height: '100vh' }} />;
+  return <canvas ref={canvasRef} style={{ width: '100vw', height: '100vh', color: "black" }} />;
 };
 
 export default ColorSplash;
