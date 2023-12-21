@@ -1,3 +1,5 @@
+> Stumbled accross the  [Useless Web](https://theuselessweb.com/) some time ago and decided to contribute with my useless website! 
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
