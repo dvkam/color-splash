@@ -17,10 +17,11 @@ const ColorSplash: React.FC = () => {
   const getRandomVelocity = (): number => (Math.random() - 0.5) * 10;
 
   const randomColor = (): string => {
-    const r: number = Math.floor(Math.random() * 256);
-    const g: number = Math.floor(Math.random() * 256);
-    const b: number = Math.floor(Math.random() * 256);
-    return `rgba(${r},${g},${b},1)`;
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    const alpha = Math.random().toFixed(2);
+    return `rgba(${r},${g},${b},${alpha})`;
   };
 
   const drawCircle = (ctx: CanvasRenderingContext2D, x: number, y: number, radius: number, color: string): void => {
@@ -75,7 +76,7 @@ const ColorSplash: React.FC = () => {
     return particles;
   };
 
-  const shoot = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, e: MouseEvent): void => {
+  const shoot = (canvas: HTMLCanvasElement, _ctx: CanvasRenderingContext2D, e: MouseEvent): void => {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
